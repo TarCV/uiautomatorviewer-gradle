@@ -1,0 +1,22 @@
+plugins {
+    id 'application'
+    id "com.diffplug.gradle.eclipse.mavencentral" version "3.17.6"
+}
+
+group = 'com.github.tarcv.tongs'
+mainClassName = "com.android.uiautomator.UiAutomatorViewer"
+
+repositories {
+    mavenCentral()
+}
+
+eclipseMavenCentral {
+    release '4.7.0', {
+        compile 'org.eclipse.swt'
+        compile 'org.eclipse.jface'
+        useNativesForRunningPlatform()
+    }
+}
+dependencies {
+    compile group: 'com.android.tools.ddms', name: 'ddmlib', version: '25.3.0'
+}
