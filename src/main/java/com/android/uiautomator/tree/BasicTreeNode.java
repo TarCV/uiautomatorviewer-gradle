@@ -106,9 +106,9 @@ public class BasicTreeNode {
 
     public Object[] getAttributesArray () {
         return null;
-    };
+    }
 
-    public static interface IFindNodeListener {
+    public interface IFindNodeListener {
         void onFoundNode(BasicTreeNode node);
     }
 }

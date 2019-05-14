@@ -1,4 +1,6 @@
 /*
+ * New code and modifications are Copyright (C) 2019 TarCV
+ * Original code is
  * Copyright (C) 2012 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,7 +18,6 @@
 
 package com.android.uiautomator;
 
-import com.android.SdkConstants;
 import com.android.ddmlib.AndroidDebugBridge;
 import com.android.ddmlib.IDevice;
 
@@ -28,37 +29,59 @@ public class DebugBridge {
     private static AndroidDebugBridge sDebugBridge;
 
     private static String getAdbLocation() {
+        File sdk;
         String toolsDir = System.getProperty("com.android.uiautomator.bindir"); //$NON-NLS-1$
-        if (toolsDir == null) {
-            return null;
-        }
 
-        File sdk = new File(toolsDir).getParentFile();
+        if (toolsDir == null) {
+            String sdkDir = System.getenv("ANDROID_HOME");
+            if (sdkDir == null) {
+                sdkDir = System.getProperty("sdk.dir");
+
+                if (sdkDir == null) {
+                    return null;
+                }
+            }
+
+            sdk = new File(sdkDir);
+        } else {
+            sdk = new File(toolsDir).getParentFile();
+            toolsDir = new File(sdk, "tools").getAbsolutePath();
+        }
 
         // check if adb is present in platform-tools
         File platformTools = new File(sdk, "platform-tools");
-        File adb = new File(platformTools, SdkConstants.FN_ADB);
-        if (adb.exists()) {
+        File adb = findAdbIn(platformTools);
+        if (adb != null && adb.exists()) {
             return adb.getAbsolutePath();
         }
 
         // check if adb is present in the tools directory
-        adb = new File(toolsDir, SdkConstants.FN_ADB);
-        if (adb.exists()) {
-            return adb.getAbsolutePath();
+        if (toolsDir != null) {
+            adb = findAdbIn(new File(toolsDir));
+            if (adb != null && adb.exists()) {
+                return adb.getAbsolutePath();
+            }
         }
 
         // check if we're in the Android source tree where adb is in $ANDROID_HOST_OUT/bin/adb
         String androidOut = System.getenv("ANDROID_HOST_OUT");
         if (androidOut != null) {
-            String adbLocation = androidOut + File.separator + "bin" + File.separator +
-                    SdkConstants.FN_ADB;
-            if (new File(adbLocation).exists()) {
-                return adbLocation;
+            adb = findAdbIn(new File(androidOut + File.separator + "bin"));
+            if (adb != null && adb.exists()) {
+                return adb.getAbsolutePath();
             }
         }
 
         return null;
+    }
+
+    private static File findAdbIn(File platformTools) {
+        File[] files = platformTools.listFiles((dir, name) -> "adb".equals(name) || name.startsWith("adb."));
+        if (files != null && files.length > 0) {
+            return files[0];
+        } else {
+            return null;
+        }
     }
 
     public static void init() {

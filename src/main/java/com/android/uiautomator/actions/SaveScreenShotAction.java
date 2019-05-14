@@ -1,4 +1,6 @@
 /*
+ * New code and modifications are Copyright (c) 2019, TarCV
+ * Original code of UiAutomatorView is
  * Copyright (C) 2013 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,7 +19,7 @@
 package com.android.uiautomator.actions;
 
 import com.android.uiautomator.UiAutomatorViewer;
-import com.google.common.io.Files;
+import java.nio.file.Files;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -32,6 +34,7 @@ import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Display;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class SaveScreenShotAction extends Action {
     private static final String PNG_TYPE = ".png";
@@ -73,7 +76,7 @@ public class SaveScreenShotAction extends Action {
                         screenshot.getImageData() };
                 try {
                     imageLoader.save(filepath + PNG_TYPE, SWT.IMAGE_PNG);
-                    Files.copy(model, new File(filepath + UIX_TYPE));
+                    Files.copy(model.toPath(), Path.of(filepath + UIX_TYPE));
                 } catch (final Exception e) {
                     Display.getDefault().syncExec(new Runnable() {
                         @Override
@@ -86,7 +89,7 @@ public class SaveScreenShotAction extends Action {
                         }
                     });
                 }
-            };
+            }
         }.start();
     }
 }
