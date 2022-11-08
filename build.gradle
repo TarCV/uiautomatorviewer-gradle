@@ -8,6 +8,7 @@ mainClassName = "com.android.uiautomator.UiAutomatorViewer"
 
 repositories {
     mavenCentral()
+    google()
 }
 
 eclipseMavenCentral {
@@ -18,5 +19,5 @@ eclipseMavenCentral {
     }
 }
 dependencies {
-    implementation group: 'com.android.tools.ddms', name: 'ddmlib', version: '25.3.0'
+    implementation group: 'com.android.tools.ddms', name: 'ddmlib', version: '30.3.1'
 }
