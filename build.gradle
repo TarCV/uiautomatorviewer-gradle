@@ -12,11 +12,11 @@ repositories {
 
 eclipseMavenCentral {
     release '4.7.0', {
-        compile 'org.eclipse.swt'
-        compile 'org.eclipse.jface'
+        implementation 'org.eclipse.swt'
+        implementation 'org.eclipse.jface'
         useNativesForRunningPlatform()
     }
 }
 dependencies {
-    compile group: 'com.android.tools.ddms', name: 'ddmlib', version: '25.3.0'
+    implementation group: 'com.android.tools.ddms', name: 'ddmlib', version: '25.3.0'
 }
