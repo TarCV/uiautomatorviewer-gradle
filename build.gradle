@@ -5,9 +5,6 @@ plugins {
 
 group = 'com.github.TarCV'
 mainClassName = "com.android.uiautomator.UiAutomatorViewer"
-application {
-    applicationDefaultJvmArgs = ['-XstartOnFirstThread']
-}
 
 repositories {
     mavenCentral()
