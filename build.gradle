@@ -19,5 +19,5 @@ eclipseMavenCentral {
     }
 }
 dependencies {
-    implementation group: 'com.android.tools.ddms', name: 'ddmlib', version: '30.3.1'
+    implementation group: 'com.android.tools.ddms', name: 'ddmlib', version: '30.4.2'
 }
