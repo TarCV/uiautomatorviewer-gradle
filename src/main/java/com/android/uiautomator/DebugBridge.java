@@ -32,7 +32,7 @@ public class DebugBridge {
         String toolsDir = System.getProperty("com.android.uiautomator.bindir"); //$NON-NLS-1$
 
         if (toolsDir == null) {
-            String sdkDir = System.getenv("ANDROID_HOME");
+            String sdkDir = System.getenv("ANDROID_SDK_ROOT");
             if (sdkDir == null) {
                 sdkDir = System.getProperty("sdk.dir");
 
