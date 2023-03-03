@@ -1,3 +1,5 @@
+![Screenshot](MainScreen.png)
+
 ### Running on Windows, Linux ###
 You can run the app as is on these OSes, just make sure Android Debug Bridge is available.
 
