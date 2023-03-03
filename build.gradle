@@ -1,6 +1,6 @@
 plugins {
     id 'application'
-    id "com.diffplug.gradle.eclipse.mavencentral" version "3.41.1"
+    id "dev.equo.p2deps" version "0.16.0"
 }
 
 group = 'com.github.TarCV'
@@ -11,11 +11,11 @@ repositories {
     google()
 }
 
-eclipseMavenCentral {
-    release '4.7.0', {
-        implementation 'org.eclipse.swt'
-        implementation 'org.eclipse.jface'
-        useNativesForRunningPlatform()
+p2deps {
+    into 'implementation', {
+        p2repo 'https://download.eclipse.org/eclipse/updates/4.7/'
+        install 'org.eclipse.swt'
+        install 'org.eclipse.jface'
     }
 }
 dependencies {
