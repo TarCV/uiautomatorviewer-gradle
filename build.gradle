@@ -1,6 +1,6 @@
 plugins {
     id 'application'
-    id "com.diffplug.gradle.eclipse.mavencentral" version "3.17.6"
+    id "com.diffplug.gradle.eclipse.mavencentral" version "3.41.1"
 }
 
 group = 'com.github.TarCV'
