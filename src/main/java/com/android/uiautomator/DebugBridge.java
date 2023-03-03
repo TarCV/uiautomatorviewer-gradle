@@ -23,6 +23,7 @@ import com.android.ddmlib.IDevice;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class DebugBridge {
     private static AndroidDebugBridge sDebugBridge;
@@ -74,9 +75,11 @@ public class DebugBridge {
 
     public static void init() {
         String adbLocation = getAdbLocation();
+        AndroidDebugBridge.init(false /* debugger support */);
         if (adbLocation != null) {
-            AndroidDebugBridge.init(false /* debugger support */);
-            sDebugBridge = AndroidDebugBridge.createBridge(adbLocation, false);
+            sDebugBridge = AndroidDebugBridge.createBridge(adbLocation, false, 15, TimeUnit.SECONDS);
+        } else {
+            sDebugBridge = AndroidDebugBridge.createBridge(15, TimeUnit.SECONDS);
         }
     }
 
