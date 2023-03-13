@@ -1,6 +1,6 @@
 plugins {
     id 'application'
-    id "dev.equo.p2deps" version "0.16.0"
+    id "dev.equo.p2deps" version "0.17.1"
 }
 
 group = 'com.github.TarCV'
