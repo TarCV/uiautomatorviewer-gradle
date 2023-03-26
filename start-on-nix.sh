@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+set -e
+
 requisites="$(nix-store --query --requisites --quiet --quiet "$(which java)")"
 gsettings_schemas_path=$(echo "${requisites}" | grep gsettings-desktop-schemas | head -n1)
 gtk_path=$(echo "$requisites" | grep gtk+3 | head -n1)
@@ -13,5 +16,7 @@ unset gtk_path
 unset gsettings_schemas_name
 unset gtk_name
 
+pushd "$(dirname "$(readlink -f "$0")")"
 ./gradlew installDist
 steam-run ./build/install/uiautomatorviewer-gradle/bin/uiautomatorviewer-gradle
+popd
