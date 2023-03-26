@@ -13,7 +13,7 @@ repositories {
 
 p2deps {
     into 'implementation', {
-        p2repo 'https://download.eclipse.org/eclipse/updates/4.7/'
+        p2repo 'https://download.eclipse.org/eclipse/updates/4.27/'
         install 'org.eclipse.swt'
         install 'org.eclipse.jface'
     }
