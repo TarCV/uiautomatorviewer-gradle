@@ -1,0 +1,26 @@
+group = 'com.android.tools'
+archivesBaseName = 'uiautomatorviewer'
+
+dependencies {
+    compile project(':base:ddmlib')
+}
+
+sourceSets {
+    main.resources.srcDir 'src/main/java'
+}
+
+sdk {
+    linux {
+       item('etc/uiautomatorviewer')  { executable true }
+    }
+    mac {
+       item('etc/uiautomatorviewer')  { executable true }
+    }
+    windows {
+       item 'etc/uiautomatorviewer.bat'
+    }
+}
+
+// configure the manifest of the buildDistributionJar task.
+sdkJar.manifest.attributes("Main-Class": "com.android.uiautomator.UiAutomatorViewer")
+
