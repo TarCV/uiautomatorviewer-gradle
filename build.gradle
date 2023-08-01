@@ -6,6 +6,12 @@ plugins {
 group = 'com.github.TarCV'
 mainClassName = "com.android.uiautomator.UiAutomatorViewer"
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
 repositories {
     mavenCentral()
     google()
@@ -13,7 +19,7 @@ repositories {
 
 p2deps {
     into 'implementation', {
-        p2repo 'https://download.eclipse.org/eclipse/updates/4.27/'
+        p2repo 'https://download.eclipse.org/eclipse/updates/4.28/'
         install 'org.eclipse.swt'
         install 'org.eclipse.jface'
     }

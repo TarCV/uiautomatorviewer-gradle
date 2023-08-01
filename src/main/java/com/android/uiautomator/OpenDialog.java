@@ -86,8 +86,6 @@ public class OpenDialog extends Dialog {
             mScreenshotText.setText(sScreenshotFile.getAbsolutePath());
         }
         GridData gd_screenShotText = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
-        gd_screenShotText.minimumWidth = FIXED_TEXT_FIELD_WIDTH;
-        gd_screenShotText.widthHint = FIXED_TEXT_FIELD_WIDTH;
         mScreenshotText.setLayoutData(gd_screenShotText);
 
         Button openScreenshotButton = new Button(openScreenshotGroup, SWT.NONE);
@@ -110,8 +108,6 @@ public class OpenDialog extends Dialog {
             mXmlText.setText(sXmlDumpFile.getAbsolutePath());
         }
         GridData gd_xmlText = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
-        gd_xmlText.minimumWidth = FIXED_TEXT_FIELD_WIDTH;
-        gd_xmlText.widthHint = FIXED_TEXT_FIELD_WIDTH;
         mXmlText.setLayoutData(gd_xmlText);
 
         Button openXmlButton = new Button(openXmlGroup, SWT.NONE);
