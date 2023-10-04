@@ -1,6 +1,6 @@
 plugins {
     id 'application'
-    id "dev.equo.p2deps" version "1.7.2"
+    id "dev.equo.p2deps" version "1.7.3"
 }
 
 group = 'com.github.TarCV'
@@ -8,7 +8,7 @@ mainClassName = "com.android.uiautomator.UiAutomatorViewer"
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
