@@ -9,8 +9,24 @@ on:
     - main
 jobs:
   validation:
+    strategy:
+      fail-fast: false
+      matrix:
+        jdkVer: [ 17, 20, 21 ] # year old LTS JDK, year old normal JDK, current LTS JDK
+
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
     - name: Gradle Wrapper Validation
       uses: gradle/wrapper-validation-action@v1.1.0
+
+    - name: Setup Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: zulu
+        java-version: ${{ matrix.jdkVer }}
+    # Intentionally don't use Gradle Action
+    # as its caching would make it harder to verify Gradle build under different JDKs
+
+    - name: Build
+      run: ./gradlew installDist

@@ -4,12 +4,13 @@ plugins {
 }
 
 group = 'com.github.TarCV'
-mainClassName = "com.android.uiautomator.UiAutomatorViewer"
+application {
+    mainClass = "com.android.uiautomator.UiAutomatorViewer"
+}
 
 java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 repositories {
