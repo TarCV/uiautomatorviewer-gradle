@@ -480,7 +480,7 @@ public class UiAutomatorView extends Composite {
         if (mScale == 1.0f) {
             return size;
         } else {
-            return new Double(Math.floor((size * mScale))).intValue();
+            return (int) Math.floor(size * mScale);
         }
     }
 
@@ -488,7 +488,7 @@ public class UiAutomatorView extends Composite {
         if (mScale == 1.0f) {
             return size;
         } else {
-            return new Double(Math.floor((size / mScale))).intValue();
+            return (int) Math.floor(size / mScale);
         }
     }
 
