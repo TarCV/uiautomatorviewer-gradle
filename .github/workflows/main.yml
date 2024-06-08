@@ -17,8 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+
     - name: Gradle Wrapper Validation
-      uses: gradle/wrapper-validation-action@v2.1.1
+      uses: gradle/actions/wrapper-validation@v3
 
     - name: Setup Java
       uses: actions/setup-java@v4
