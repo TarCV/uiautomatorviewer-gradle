@@ -8,6 +8,10 @@ Therefore, you can [download that source](https://android.googlesource.com/platf
 
 ### Running on Windows, Linux ###
 You can run the app as is on these OSes, just make sure Android Debug Bridge is available.
+```bash
+./gradlew installDist
+./build/install/uiautomatorviewer-gradle/bin/uiautomatorviewer-gradle
+```
 
 ### Running on Mac ###
 Launch the app passing `-XstartOnFirstThread` JVM argument, otherwise it will immediately crash. For example:
