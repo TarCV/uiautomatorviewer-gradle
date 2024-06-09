@@ -1,3 +1,5 @@
+import java.util.regex.Matcher
+
 plugins {
     id 'application'
     id "dev.equo.p2deps" version "1.7.8"
@@ -27,4 +29,57 @@ p2deps {
 }
 dependencies {
     implementation group: 'com.android.tools.ddms', name: 'ddmlib', version: '31.8.1'
+}
+
+tasks.named('run') {
+    jvmArguments = providers.systemProperty('os.name')
+            .map {
+                def fixed = it.toLowerCase(Locale.ENGLISH)
+                fixed.contains('darwin') || fixed.contains('mac')
+            }
+            .map {
+                if (it) {
+                    ['-XstartOnFirstThread']
+                } else {
+                    []
+                }
+            }
+}
+
+def startScripts = tasks.named('startScripts')
+def macOptFix = '; if "$darwin" ; then DEFAULT_JVM_OPTS="$DEFAULT_JVM_OPTS -XstartOnFirstThread"; fi'
+def checkStartScripts = tasks.register('checkStartScripts') {
+    dependsOn startScripts
+    doLast {
+        def nixScriptText = startScripts.get().outputs.files
+                .singleFile
+                .listFiles()
+                .find { File f ->
+                    f.isFile() && !f.name.contains('.')
+                }
+                .getText('UTF-8')
+        try {
+            assert nixScriptText.contains(macOptFix)
+        } catch (AssertionError e) {
+            throw new AssertionError("Start scripts are not properly patched for Macs. Please try removing build/scripts directory.", e)
+        }
+    }
+}
+startScripts.configure {
+    finalizedBy checkStartScripts
+
+    final originalGenerator = unixStartScriptGenerator
+    unixStartScriptGenerator = new ScriptGenerator() {
+        @Override
+        void generateScript(JavaAppStartScriptGenerationDetails details, Writer destination) {
+            def stringWriter = new StringWriter()
+            originalGenerator.generateScript(details, stringWriter)
+            def patchedScript = stringWriter.toString()
+                    .replaceFirst(
+                            '(DEFAULT_JVM_OPTS=.+)',
+                            '$1' + Matcher.quoteReplacement(macOptFix)
+                    )
+            destination.write(patchedScript)
+        }
+    }
 }
