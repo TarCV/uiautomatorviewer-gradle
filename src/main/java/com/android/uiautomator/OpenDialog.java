@@ -133,14 +133,6 @@ public class OpenDialog extends Dialog {
         updateButtonState();
     }
 
-    /**
-     * Return the initial size of the dialog.
-     */
-    @Override
-    protected Point getInitialSize() {
-        return new Point(368, 233);
-    }
-
     @Override
     protected void configureShell(Shell newShell) {
         super.configureShell(newShell);
