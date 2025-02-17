@@ -26,5 +26,5 @@ p2deps {
     }
 }
 dependencies {
-    implementation group: 'com.android.tools.ddms', name: 'ddmlib', version: '31.8.0'
+    implementation group: 'com.android.tools.ddms', name: 'ddmlib', version: '31.8.1'
 }
