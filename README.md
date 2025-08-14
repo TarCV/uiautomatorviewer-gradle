@@ -17,7 +17,7 @@ Once that is done, you can just run the start script for your OS:
 **Note**: For Win, you might need the `.bat` scripts (`gradlew.bat` and `uiautomatorviewer-gradle.bat`) instead.
 
 ### Running in an IDE on a Mac ###
-When using the `run` task from Gradle or calling the relevant start script for your OS (as described [above](#running-)) everything should work as is.
+When using the `run` task from Gradle or calling the relevant start script for your OS (as described in [Running](#running)) everything should work as is.
 Otherwise, make sure the option `-XstartOnFirstThread` is passed to JVM when launching the app from your IDE.
 
 Also make sure Android Debug Bridge is available.
