@@ -7,6 +7,7 @@ Therefore, you can [download that source](https://android.googlesource.com/platf
 2. **Reviewing changes**: Some changes were made to those original sources to fix building on the latest Java/OS/etc., update libraries, and for convenience. These changes can be reviewed by [comparing the current main with the initial commit](https://github.com/TarCV/uiautomatorviewer-gradle/compare/da94b667bbdc007d2bdf74d300932eb3dc75256e...main).
 
 ### Running ###
+Install JDK 17+ if needed, older versions won't be able to build or run the app.
 Build the app and its start scripts with `installDist` Gradle task. Make sure Android Debug Bridge is available.
 Once that is done, you can just run the start script for your OS:
 ```bash
