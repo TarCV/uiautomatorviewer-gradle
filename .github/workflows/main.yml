@@ -12,8 +12,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # LTS JDK active one year before if still active, current active LTS JDK, active normal JDKs in the last 12 months
-        jdkVer: [ 17, 21, 22, 23 ]
+        # Currently active LTS JDKs (17+) and normal JDKs active in the last 12 months
+        jdkVer: [ 17, 21, 22, 23, 24 ]
 
     runs-on: ubuntu-latest
     steps:
