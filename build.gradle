@@ -23,7 +23,7 @@ repositories {
 p2deps {
     into 'implementation', {
         // see https://download.eclipse.org/eclipse/downloads/index.html for versions
-        p2repo 'https://download.eclipse.org/eclipse/updates/4.34/'
+        p2repo 'https://download.eclipse.org/eclipse/updates/4.38/'
         install 'org.eclipse.swt'
         install 'org.eclipse.jface'
     }
